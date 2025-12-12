@@ -44,7 +44,7 @@ This project combines the power of [yt-cast-receiver](https://github.com/patrick
 
 3. **Start the application**:
    ```bash
-   docker compose up -d --build
+   docker compose up -d
    ```
 
 4. **Cast from your device**:

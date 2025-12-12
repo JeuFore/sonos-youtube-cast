@@ -1,7 +1,6 @@
 services:
   app:
-    build:
-      context: .
+    image: ghcr.io/jeufore/sonos-youtube-cast:latest
     environment:
       # Required
       - SONOS_DEVICE_IP=192.168.1.100        # Your Sonos device IP address
