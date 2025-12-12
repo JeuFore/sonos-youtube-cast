@@ -73,8 +73,8 @@ SONOS_DEVICE_IP=192.168.1.100        # Your Sonos device IP address
 # Optional
 DEVICE_NAME=My YouTube Cast Receiver  # Name shown in cast devices list
 LOG_LEVEL=info                        # debug, info, warn, error
-MEETUBE_API_BASE_URL=http://localhost:8081
-MEETUBE_AUDIO_URL=http://localhost:8081/audio_download
+MEETUBE_API_BASE_URL=http://metube:8081
+MEETUBE_AUDIO_URL=http://<service_ip>:8081/audio_download
 PLAYLIST_PULL_INTERVAL=30             # Seconds between playlist updates
 PLAYLIST_MAX_AHEAD_DOWNLOAD=10        # Number of tracks to download ahead
 PLAYLIST_DOWNLOAD_INTERVAL=20         # Seconds between downloads
