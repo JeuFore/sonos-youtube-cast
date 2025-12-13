@@ -66,7 +66,7 @@ receiver.on('senderConnect', (sender) => {
 receiver.on('senderDisconnect', (sender, implicit) => {
     logger.info(`Disconnected from ${sender.name} (${sender.client?.name}${implicit ? ' - implicit' : ''}). Remaining connected senders: ${receiver.getConnectedSenders().length}`);
 
-    player.stopPlaylistInterval();
+    player.stop();
 
     if (receiver.getConnectedSenders().length === 0)
         player.clearDeviceQueue();
