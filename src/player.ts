@@ -57,7 +57,7 @@ export default class SonosPlayer extends Player {
 
         const music: MusicInfo | null = await this.#downloadMusic(video.id);
 
-        if (!music) {
+        if (!music?.filename) {
             this.logger.error(`[SonosPlayer] Music not found for video id=${video.id}`);
             this.next();
             return false;
