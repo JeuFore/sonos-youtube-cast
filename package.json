@@ -1,6 +1,6 @@
 {
   "name": "sonos-youtube-cast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bridge application that enables YouTube casting to Sonos speakers by acting as a Chromecast Audio receiver",
   "main": "src/index.ts",
   "license": "MIT",
