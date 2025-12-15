@@ -25,6 +25,7 @@ export default class SonosPlayer extends Player {
     #timer: Timer;
     #seekOffset: number = 0;
     #duration: number = 0;
+    #tempPosition: number = 0;
 
     constructor(logger: Logger) {
         super();
@@ -49,9 +50,9 @@ export default class SonosPlayer extends Player {
     }
 
     protected async doPlay(video: Video, position: number): Promise<boolean> {
+        this.#tempPosition = position;
         this.logger.debug(`[SonosPlayer] Playing video id=${video.id} from position=${position}s`);
 
-        this.#seekOffset = 0;
         this.#timer.stop();
         this.#resetTimeout();
 
@@ -88,14 +89,14 @@ export default class SonosPlayer extends Player {
                 }
             }
 
+            this.#tempPosition = 0;
             if (!condition) {
                 this.logger.error('Error playing music on Sonos');
                 return false;
             }
 
-            this.#timer.start();
-            this.#duration = Number(music.entry.duration) - 2;
-            this.#startTimeout(this.#duration - this.#seekOffset);
+            this.#duration = music.entry.duration;
+            await this.doSeek(position);
 
             this.startPlaylistInterval();
             this.#setDeviceQueue();
@@ -189,10 +190,14 @@ export default class SonosPlayer extends Player {
     }
 
     protected async doGetPosition(): Promise<number> {
+        if (this.#tempPosition) {
+            return this.#tempPosition;
+        }
+
         try {
             const track = await this.#device.currentTrack();
 
-            return track.position + 2;
+            return track.position;
         } catch (error) {
             this.logger.error(error);
             return 0;
